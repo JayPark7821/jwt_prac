@@ -47,11 +47,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             //  jwt 토큰을 만들어서 응답해줌
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
 
-            // PrincipalDetailsService ->  loadUserByUsername() 메소드 실행됨
+
             // 2. 정상인지 로그인 시도 ->authenticationManager로 로그인 시도를 하면
             // PrincipalDetailsService 호출 loadUserByUsername() 호출
+            Authentication authentication = authenticationManager.authenticate(authenticationToken);// PrincipalDetailsService ->  loadUserByUsername() 메소드 실행됨
 
-            Authentication authentication = authenticationManager.authenticate(authenticationToken);
             PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
             System.out.println("principalDetails = " + principalDetails.getUser().getUsername());
             // Authentication 객체가 session영역에 저장을 해야함 즉 return authentication. => 로그인됨

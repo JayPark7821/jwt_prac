@@ -20,8 +20,9 @@ public class MyFilter1 implements Filter {
             System.out.println("인증o");
             chain.doFilter(req, res);
         }else{
-            PrintWriter out = res.getWriter();
-            out.print("인증x");
+//            PrintWriter out = res.getWriter();
+//            out.print("인증x");
+            chain.doFilter(req, res);
         }
 
 
